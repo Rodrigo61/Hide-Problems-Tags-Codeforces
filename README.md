@@ -1,4 +1,4 @@
-This is a very simple extension that allows you to Hide/Show problems' tags in an easier way (i.e. instead of changing your settings every time).
+This is a very simple extension for the codeforces website. It allows you to Hide/Show problems' tags in an easier way (i.e. instead of changing your settings every time).
 
 This extensions just add some buttons to Hide/show the tags, as shown in screenshots below.
 
