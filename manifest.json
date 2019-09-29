@@ -1,6 +1,6 @@
 {
-    "name": "Hide Problems Tags",
-    "version": "1.0",
+    "name": "Hide Problems Tags - Codeforces",
+    "version": "1.2",
     "description": "Very simple extension to hide/show problems tags",
     "permissions": ["activeTab"],
     "content_scripts": [{
