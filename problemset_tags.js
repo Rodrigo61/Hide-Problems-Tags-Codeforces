@@ -1,6 +1,6 @@
 const showAllText = "Show all tags";
 const hideAllText = "Hide all tags";
-const tagLinks = document.querySelectorAll('a[href*="problemset?tags"]');
+const tagLinks = getTagLinks();
 
 // check if the page has a tag links (as in problemset page)
 if (tagLinks.length > 0)
@@ -86,3 +86,14 @@ function toggleAllTags(btn, problemsToggleButtons)
     }
 }
 
+function getTagLinks()
+{
+    if (window.location.href.indexOf("problemset") == -1) {
+        // Definitely is not on the problemset page.
+        return [];
+    }
+
+    // Look for all links that contains "problemset" substring, since the verification above
+    // is not sufficient to ensure that it's on the problemset page.
+    return document.querySelectorAll('a[href*="problemset"][href*="tags"]');
+}
