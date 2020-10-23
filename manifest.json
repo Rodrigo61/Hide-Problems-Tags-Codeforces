@@ -7,7 +7,8 @@
     "permissions": ["activeTab"],
     "content_scripts": [{
         "matches": ["https://codeforces.com/*"],
-        "js" : ["problem_tags.js", "problemset_tags.js"]
+        "js" : ["problem_tags.js", "problemset_tags.js", "main.js"],
+        "run_at": "document_start"
     }],
     "icons": {
         "16": "images/cf16.png",

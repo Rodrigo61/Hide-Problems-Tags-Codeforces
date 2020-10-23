@@ -1,46 +1,47 @@
 const showAllText = "Show all tags";
 const hideAllText = "Hide all tags";
-const tagLinks = getTagLinks();
 
-// check if the page has a tag links (as in problemset page)
-if (tagLinks.length > 0)
+function hideProblemsetTags() 
 {
-    // get the container component of the set of tags of each problem
-    let problemTagsContainers = new Set();
-    tagLinks.forEach(tag => {
-        problemTagsContainers.add(tag.parentElement);
-    });
+    const tagLinks = getTagLinks();
+    // check if the page has a tag links (as in problemset page)
+    if (tagLinks.length > 0)
+    {
+        // get the container component of the set of tags of each problem
+        let problemTagsContainers = new Set();
+        tagLinks.forEach(tag => {
+            problemTagsContainers.add(tag.parentElement);
+        });
 
-    // Store original tag of each tag in a new attribute
-    tagLinks.forEach(tag => {
-        const originalTag = tag.text;
-        tag.setAttribute("originalTag", originalTag);
-    });
+        // Store original tag of each tag in a new attribute
+        tagLinks.forEach(tag => {
+            const originalTag = tag.text;
+            tag.setAttribute("originalTag", originalTag);
+        });
 
-    // create individual hide/show button for each problem
-    problemsToggleButtons = []
-    problemTagsContainers.forEach(container => {
+        // create individual hide/show button for each problem
+        problemsToggleButtons = []
+        problemTagsContainers.forEach(container => {
+            const hideShowButton = document.createElement("button");
+            hideShowButton.setAttribute("style", "font-size: 1.1rem");
+            hideShowButton.textContent = "+";
+            hideShowButton.onclick = () => toggleProblemTags(hideShowButton);
+            container.appendChild(hideShowButton);
+            
+            problemsToggleButtons.push(hideShowButton);
+        });
+
+        // create 'global' hide/show button
         const hideShowButton = document.createElement("button");
-        hideShowButton.setAttribute("style", "font-size: 1.1rem");
-        hideShowButton.textContent = "+";
-        hideShowButton.onclick = () => toggleProblemTags(hideShowButton);
-        container.appendChild(hideShowButton);
-        
-        problemsToggleButtons.push(hideShowButton);
-    });
+        hideShowButton.textContent = hideAllText;
+        hideShowButton.onclick = () => toggleAllTags(hideShowButton, problemsToggleButtons);
+        const menuElement = document.querySelectorAll('.second-level-menu-list')[1];
+        menuElement.appendChild(hideShowButton);
 
-    // create 'global' hide/show button
-    const hideShowButton = document.createElement("button");
-    hideShowButton.textContent = hideAllText;
-    hideShowButton.onclick = () => toggleAllTags(hideShowButton, problemsToggleButtons);
-    const menuElement = document.querySelectorAll('.second-level-menu-list')[1];
-    menuElement.appendChild(hideShowButton);
-
-    // starts with tags hidden
-    hideShowButton.click();
-
+        // starts with tags hidden
+        hideShowButton.click();
+    }
 }
-
 
 function toggleProblemTags(toggleButton, hide = null) {
     if (hide == null)
