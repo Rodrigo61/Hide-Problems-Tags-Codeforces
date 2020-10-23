@@ -1,5 +1,5 @@
-const showText = "Show Problems Tags";
-const hideText = "Hide Problems Tags";
+const showText = "Show tags";
+const hideText = "Hide tags";
 
 const tags = document.querySelectorAll('.tag-box');
 

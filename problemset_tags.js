@@ -1,4 +1,6 @@
-const tagLinks = document.querySelectorAll('a[href*="tags"]');
+const showAllText = "Show all tags";
+const hideAllText = "Hide all tags";
+const tagLinks = document.querySelectorAll('a[href*="problemset?tags"]');
 
 // check if the page has a tag links (as in problemset page)
 if (tagLinks.length > 0)
@@ -29,7 +31,7 @@ if (tagLinks.length > 0)
 
     // create 'global' hide/show button
     const hideShowButton = document.createElement("button");
-    hideShowButton.textContent = hideText;
+    hideShowButton.textContent = hideAllText;
     hideShowButton.onclick = () => toggleAllTags(hideShowButton, problemsToggleButtons);
     const menuElement = document.querySelectorAll('.second-level-menu-list')[1];
     menuElement.appendChild(hideShowButton);
@@ -68,16 +70,16 @@ function toggleProblemTags(toggleButton, hide = null) {
 
 function toggleAllTags(btn, problemsToggleButtons)
 {
-    if (btn.textContent === showText)
+    if (btn.textContent === showAllText)
     {
-        btn.textContent = hideText;
+        btn.textContent = hideAllText;
         problemsToggleButtons.forEach(btn => {
             toggleProblemTags(btn, false);
         })
     }
     else
     {
-        btn.textContent = showText;
+        btn.textContent = showAllText;
         problemsToggleButtons.forEach(btn => {
             toggleProblemTags(btn, true);
         })
